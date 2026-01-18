@@ -237,7 +237,7 @@ if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True)
                             st.metric("Tarif per m²", f"Rp {tarif_per_m2:,.0f}")
                                                
                         with col2:
-                            st.metric("💵 Total Biaya Sewa per Tahun", f"Rp {biaya_total:,.0f}")
+                            st.metric("💵 Total Biaya Sewa per Tahun", f"Rp {biaya_per_tahun:,.0f}")
                         
                         with col3:
                             st.metric(f"Biaya Sewa dalam {periode} Bulan", f"Rp {biaya_total_periode:,.0f}")
