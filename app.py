@@ -155,7 +155,7 @@ def get_tarif_category(pasar_name, kelas):
     else:
         return "Kelas 3"  # Default
 
-def hitung_sewa(tarif_per_m2, luas):
+def hitung_sewa(tarif_per_m2, luas, periode):
     """
     Rumus: (Biaya HPTU/tahun x Luas x 30%) + 11% (Biaya HPTU/tahun x Luas x 30%)
     """
@@ -166,9 +166,11 @@ def hitung_sewa(tarif_per_m2, luas):
     biaya_dasar = biaya_per_tahun * luas * 0.30
     
     # Tambahkan 11% dari biaya dasar
-    biaya_total = biaya_dasar + (biaya_dasar * 0.11)
+    biaya_per_tahun = biaya_dasar + (biaya_dasar * 0.11)
     
-    return biaya_total, biaya_dasar
+    biaya_total_periode = biaya_per_tahun / 12 * periode
+    
+    return biaya_total_periode, biaya_dasar, biaya_per_tahun
 
 # Streamlit UI
 st.set_page_config(page_title="Kalkulator Harga Sewa Pasar", page_icon="🏪", layout="wide")
@@ -198,6 +200,8 @@ with col2:
     lantai = st.selectbox("Lantai", [1, 2, 3])
     
     luas = st.number_input("Luas (m²)", min_value=0.0, value=0.0, step=0.5)
+    
+    periode = st.selectbox("Masa Sewa (Bulan)", [1, 3, 6, 12])
 
 st.markdown("---")
 
@@ -231,12 +235,13 @@ if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True)
                         
                         with col1:
                             st.metric("Tarif per m²", f"Rp {tarif_per_m2:,.0f}")
-                        
+                                               
                         with col2:
-                            st.metric("Biaya Dasar per Tahun", f"Rp {biaya_dasar:,.0f}")
+                            st.metric("💵 Total Biaya Sewa per Tahun", f"Rp {biaya_total:,.0f}")
                         
                         with col3:
-                            st.metric("💵 Total Biaya Sewa per Tahun", f"Rp {biaya_total:,.0f}")
+                            st.metric(f"Biaya Sewa dalam {periode} Bulan", f"Rp {biaya_total_periode:,.0f}")
+
                         
                         st.markdown("---")
                         st.markdown("### 📝 Rincian")
