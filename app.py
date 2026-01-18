@@ -224,7 +224,7 @@ if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True)
                         st.error("⚠️ Tarif untuk kelompok jenis jualan ini tidak tersedia!")
                     else:
                         # Hitung biaya sewa
-                        biaya_total, biaya_dasar = hitung_sewa(tarif_per_m2, luas, periode)
+                        biaya_total_periode, biaya_dasar, biaya_per_tahun = hitung_sewa(tarif_per_m2, luas, periode)
                         
                         # Tampilkan hasil
                         st.success("✅ Perhitungan Berhasil!")
