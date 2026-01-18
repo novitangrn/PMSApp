@@ -242,6 +242,18 @@ if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True)
                         with col3:
                             st.metric(f"Biaya Sewa dalam {periode} Bulan", f"Rp {biaya_total_periode:,.0f}")
 
+                        kenaikan_persen = [10, 30, 50, 80, 100]
+
+                        data_tabel = []
+                        for k in kenaikan_persen:
+                            biaya_naik = biaya_total_periode * (1 + k / 100)
+                            data_tabel.append({
+                                "Kenaikan": f"{k}%",
+                                "Total Biaya (Rp)": f"Rp {biaya_naik:,.0f}"
+                            })
+                        
+                        st.markdown("#### 📈 Opsi Kenaikan Biaya Sewa")
+                        st.table(data_tabel)
                         
                         st.markdown("---")
                         st.markdown("### 📝 Rincian")
