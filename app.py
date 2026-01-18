@@ -160,7 +160,7 @@ def hitung_sewa(tarif_per_m2, luas):
     Rumus: (Biaya HPTU/tahun x Luas x 30%) + 11% (Biaya HPTU/tahun x Luas x 30%)
     """
     # Biaya HPTU per tahun (tarif adalah untuk 20 tahun)
-    biaya_per_tahun = tarif_per_m2 / 20
+    biaya_per_tahun = tarif_per_m2
     
     # Hitung biaya dasar (30% dari biaya per tahun x luas)
     biaya_dasar = biaya_per_tahun * luas * 0.30
@@ -230,7 +230,7 @@ if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True)
                         col1, col2, col3 = st.columns(3)
                         
                         with col1:
-                            st.metric("Tarif per m² (20 tahun)", f"Rp {tarif_per_m2:,.0f}")
+                            st.metric("Tarif per m²", f"Rp {tarif_per_m2:,.0f}")
                         
                         with col2:
                             st.metric("Biaya Dasar per Tahun", f"Rp {biaya_dasar:,.0f}")
@@ -248,7 +248,7 @@ if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True)
                         st.write(f"**Luas:** {luas} m²")
                         
                         st.markdown("---")
-                        st.info("💡 **Catatan:** Biaya sewa dihitung dengan rumus: (Biaya HPTU/tahun × Luas × 30%) + 11% dari nilai tersebut")
+                        #st.info("💡 **Catatan:** Biaya sewa dihitung dengan rumus: (Biaya HPTU/tahun × Luas × 30%) + 11% dari nilai tersebut")
                 else:
                     st.error(f"⚠️ Bentuk stand '{bentuk}' tidak tersedia untuk konfigurasi ini!")
             else:
