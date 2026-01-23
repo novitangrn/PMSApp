@@ -206,9 +206,7 @@ with col2:
 st.markdown("---")
 
 if st.button("💰 Hitung Harga Sewa", type="primary", use_container_width=True):
-    if not nama_pedagang:
-        st.error("⚠️ Silakan masukkan nama pedagang!")
-    elif luas <= 0:
+    if not luas <= 0:
         st.error("⚠️ Silakan masukkan luas yang valid!")
     else:
         # Tentukan kategori tarif
